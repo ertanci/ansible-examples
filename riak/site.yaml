@@ -1,0 +1,3 @@
+---
+- include: playbooks/install_riak.yaml
+- include: playbooks/form_cluster.yaml
