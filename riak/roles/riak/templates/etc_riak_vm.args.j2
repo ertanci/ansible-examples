@@ -16,6 +16,11 @@
 ## Treat error_logger warnings as warnings
 +W w
 
+
+{% if ansible_processor_cores == 'NA' %}
+-smp enable
+{% endif %}
+
 ## Increase number of concurrent ports/sockets
 -env ERL_MAX_PORTS 4096
 
