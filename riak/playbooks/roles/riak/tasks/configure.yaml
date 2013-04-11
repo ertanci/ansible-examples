@@ -1,10 +1,10 @@
 ---
 - name: configure app.config
-  template: src=etc_riak_app.config.j2 dest=/etc/riak/app.config
+  template: src=../roles/riak/templates/etc_riak_app.config.j2 dest=/etc/riak/app.config
   tags: configfiles
 
 - name: configure vm.args
-  template: src=etc_riak_vm.args.j2 dest=/etc/riak/vm.args
+  template: src=../roles/riak/templates/etc_riak_vm.args.j2 dest=/etc/riak/vm.args
   tags: configfiles
 
 - name: start riak

@@ -2,6 +2,10 @@
 
 These example playbooks should help you get an idea of how to use the riak ansible module.  These playbooks were tested on Ubuntu Precise (12.04).
 
+#### Requirements
+
+This playbook requires ansible 1.2.
+
 #### Hosts File Naming Conventions
 
 In the hosts file, we use a host variable **node_type** to ease the cluster joining process.  The following values of **node_type** can be used.

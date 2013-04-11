@@ -1,0 +1,9 @@
+---
+- hosts: riak_cluster
+  sudo: True
+  vars:
+    ip_addr: ${ansible_${riak.iface}.ipv4.address}
+  roles: 
+    - riak
+
+
