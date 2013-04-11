@@ -24,10 +24,10 @@ network.
 
 Here are the playbooks that you can use with the ansible-playbook commands:
 
-* **site.yaml** - creates a complete riak cluster, it calls install_riak.yaml and form_cluster.yaml
-* **install_riak.yaml** - tunes the operating system and installs Riak
-* **form_cluster.yaml** - forms a riak cluster
-* **rolling_restart.yaml** - demonstrates the ability to perform a rolling
+* **site.yml** - creates a complete riak cluster, it calls install_riak.yml and form_cluster.yml
+* **install_riak.yml** - tunes the operating system and installs Riak
+* **form_cluster.yml** - forms a riak cluster
+* **rolling_restart.yml** - demonstrates the ability to perform a rolling
 configuration change.  Similar principals could apply to performing
 rolling upgrades of Riak itself.
 

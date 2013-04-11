@@ -1,6 +1,0 @@
-- include: prep_os.yaml
-
-- include: Ubuntu/main.yaml
-  when: ansible_distribution == "Ubuntu"
-
-- include: configure.yaml
