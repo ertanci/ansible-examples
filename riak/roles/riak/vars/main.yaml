@@ -1,0 +1,1 @@
+ip_addr: ${ansible_${riak.iface}.ipv4.address}
