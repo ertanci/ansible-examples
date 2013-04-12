@@ -1,0 +1,90 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# (c) 2013, James Martin <jmartin@basho.com>
+#
+# This file is part of Ansible
+#
+# Ansible is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Ansible is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+#
+DOCUMENTATION = '''
+---
+module: updatecreds
+short_description: This module updates the RiakCS admin credentials.
+description:
+     - When RiakCS admin credentials are reset, the credentials need to be stored
+       for the next run of a playbook.  This module captures those credentials
+       and creates/updates them in a vars file.  This module is meant only for use
+       on the ansible machine.
+
+version_added: "1.2"
+options:
+  admin_key:
+    description:
+      - authentication key id
+    required: true
+    default: foo
+    aliases: []
+  admin_secret:
+    description:
+      - authentication secret key
+    required: true
+    default: foo
+    aliases: []
+  path:
+    description:
+      - The path to the var file
+    required: true
+    default: ../group_vars/all
+    aliases: []
+
+'''
+
+
+import yml
+
+def main():
+
+    ansible_facts = {}
+    arg_spec = dict(
+        path=dict(default='../group_vars/all'),
+        admin_key=dict(default='foo'),
+        admin_secret=dict(default='bar')
+    )
+
+    module = AnsibleModule(argument_spec=arg_spec)
+
+    path = module.params.get('path')
+    admin_key = module.params.get('admin_key')
+    admin_secret = module.params.get('admin_secret')
+
+    file = open(path, 'r')
+    data = yml.load(file.read())
+    file.close()
+
+    data['riakcs']['admin_key'] = admin_key
+    data['riakcs']['admin_secret'] = admin_secret
+
+    file = open(path, 'w')
+    file.write(yml.dump(data, default_flow_style=False))
+    file.close()
+
+    result = {'changed' : True }
+
+    module.exit_json(**result)
+
+# this is magic, see lib/ansible/module_common.py
+#<<INCLUDE_ANSIBLE_MODULE_COMMON>>
+
+main()

@@ -1,0 +1,4 @@
+- name: configure /etc/riak-cs/app.config
+  template: src=etc_riak-cs_app.config.j2 dest=/etc/riak-cs/app.config
+  tags: configfiles
+  notify: restart riakcs

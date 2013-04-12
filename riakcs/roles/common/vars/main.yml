@@ -1,0 +1,4 @@
+---
+riak_ip: ${ansible_${riak.iface}.ipv4.address}
+riakcs_ip: ${ansible_${riakcs.iface}.ipv4.address}
+stanchion_ip: ${ansible_${stanchion.iface}.ipv4.address}

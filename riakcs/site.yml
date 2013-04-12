@@ -1,0 +1,5 @@
+---
+- include: install_riakcs.yml
+- include: install_stanchion.yml
+- include: ../riak/install_riak.yml
+- include: ../riak/form_cluster.yml

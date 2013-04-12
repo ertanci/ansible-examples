@@ -1,0 +1,18 @@
+[localhost]
+127.0.0.1 ansible_python_interpreter=/Users/jmartin/.virtualenvs/ansible-git/bin/python
+
+[riakcs_cluster]
+10.0.8.133 node_type=primary
+10.0.8.228 node_type=middle
+10.0.8.230 node_type=middle
+10.0.8.231 node_type=middle
+10.0.8.233 node_type=last
+
+[stanchion]
+10.0.8.133
+
+[riak_cluster:children]
+riakcs_cluster
+
+[riakcs_servers:children]
+riakcs_cluster

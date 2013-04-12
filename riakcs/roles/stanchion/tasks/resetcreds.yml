@@ -1,0 +1,4 @@
+---
+- name: get credentials
+  riakcs: admin_id=${riakcs.admin_user} admin_email=${riakcs.admin_email}
+  register: creds
