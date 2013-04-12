@@ -14,6 +14,9 @@
 - name: start riak
   service: name=riak state=started
 
+- name: wait for port 8098 to become active
+  wait_for: port=8098
+
 - name: wait for riak_kv service to start
   riak: wait_for_service=kv
   async: 30
