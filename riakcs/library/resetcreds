@@ -52,7 +52,7 @@ options:
 '''
 
 
-import yml
+import yaml
 
 def main():
 
@@ -70,14 +70,14 @@ def main():
     admin_secret = module.params.get('admin_secret')
 
     file = open(path, 'r')
-    data = yml.load(file.read())
+    data = yaml.load(file.read())
     file.close()
 
     data['riakcs']['admin_key'] = admin_key
     data['riakcs']['admin_secret'] = admin_secret
 
     file = open(path, 'w')
-    file.write(yml.dump(data, default_flow_style=False))
+    file.write(yaml.dump(data, default_flow_style=False))
     file.close()
 
     result = {'changed' : True }

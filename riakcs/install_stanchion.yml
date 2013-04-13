@@ -1,10 +1,6 @@
 ---
 - hosts: stanchion
   sudo: True
-  vars:
-    admin_key: ${riakcs.admin_key}
-    admin_secret: ${riakcs.admin_secret}
-    anon: 'false'
   roles:
   - common
   - stanchion
