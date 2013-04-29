@@ -1,9 +1,0 @@
----
-- hosts: riak_cluster
-  serial: 1
-  vars:
-    ip_addr: ${ansible_${riak.iface}.ipv4.address}
-  sudo: True
-  tasks:
-  - include: ../roles/riak/tasks/rolling_restart.yml
-
