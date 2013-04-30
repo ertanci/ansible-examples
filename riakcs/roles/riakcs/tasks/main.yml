@@ -3,6 +3,10 @@
   apt: pkg=riak-cs update_cache=yes
   when_string: $ansible_pkg_mgr == 'apt'
 
+- name: yum install riak-cs
+  yum: name=riak-cs state=present
+  when_string: $ansible_pkg_mgr == 'yum'
+
 - name: configure ulimit for riak-cs user
   copy: src=etc_security_limits.d_riakcs.conf dest=/etc/security/limits.d/riakcs.conf
 
