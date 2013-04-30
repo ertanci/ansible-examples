@@ -2,11 +2,10 @@
 - name: configure ulimit for stanchion user
   copy: src=etc_security_limits.d_stanchion.conf dest=/etc/security/limits.d/stanchion.conf
 
-- name: apt install stanchion
-  apt: pkg=stanchion update_cache=yes
-  when_string: $ansible_pkg_mgr == 'apt'
-
-- include: appconfig.yml
+- name: configure /etc/stanchion/app.config
+  template: src=etc_stanchion_app.config.j2 dest=/etc/stanchion/app.config
+  tags: configfiles
+  notify: restart stanchion
 
 - name: configure vm.args
   template: src=etc_stanchion_vm.args.j2 dest=/etc/stanchion/vm.args
