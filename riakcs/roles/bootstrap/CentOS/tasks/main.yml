@@ -10,5 +10,9 @@
   notify:
   - restart iptables
 
-- name: install riak
-  yum: name=riak
+- name: install riak, riak-cs, stanchion
+  yum: name=$item state=present
+  with_items:
+  - riak
+  - riak-cs
+  - stanchion

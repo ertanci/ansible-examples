@@ -81,7 +81,7 @@ def main():
         response_raw = urllib2.urlopen(req , None, 5).read()
     except urllib2.HTTPError, e:
         if e.code == 409:
-            err='The username already exists.'
+            err='The username "%s" already exists.' % admin_id
             module.fail_json(msg=err)
         else:
             err='There was a problem creating the user, HTTP error code %s' % str(e.code)

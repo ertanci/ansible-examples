@@ -1,5 +1,5 @@
 ---
-- include: playbooks/setup_riakcs.yml
-- include: playbooks/setup_stanchion.yml
-- include: playbooks/setup_riak.yml
-- include: playbooks/form_cluster.yml
+- include: setup_riakcs.yml
+- include: setup_stanchion.yml
+- include: setup_riak.yml
+- include: form_cluster.yml

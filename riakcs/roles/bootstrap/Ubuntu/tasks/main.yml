@@ -2,11 +2,22 @@
 - name: set the riak ulimit
   copy: src=etc_default_riak_ulimit dest=/etc/default/riak
 
+- name: set the riakcs ulimit
+  copy: src=etc_default_riak-cs_ulimit dest=/etc/default/riak-cs
+
+- name: set the stanchion ulimit
+  copy: src=etc_default_stanchion_ulimit dest=/etc/default/stanchion
+
 - name: update pam configuration
   lineinfile: line="session    required   pam_limits.so" dest={{ item }} regexp="session    required   pam_limits.so" insertafter="^# end of pam-auth-update config"
   with_items:
     - /etc/pam.d/common-session
     - /etc/pam.d/common-session-noninteractive
+
+- name: configure iptables
+  template: src=../../common/templates/iptables.j2 dest=/etc/iptables.rules owner=root group=root
+  notify:
+  - restore iptables
 
 - name: get the basho apt key
   apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present
@@ -15,9 +26,8 @@
   template: src=etc_apt_sources.list.d_basho.list.j2 dest=/etc/apt/sources.list.d/basho.list
 
 - name: install riak
-  apt: pkg=riak update_cache=yes
-
-- name: configure iptables
-  template: src=../../common/templates/iptables.j2 dest=/etc/iptables.rules owner=root group=root
-  notify:
-  - restore iptables
+  apt: pkg=$item update_cache=yes
+  with_items:
+  - riak
+  - riak-cs
+  - stanchion

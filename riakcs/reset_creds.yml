@@ -1,0 +1,48 @@
+---
+# prep services for reset
+- hosts: stanchion[0]
+  sudo: True
+  roles:
+  - role: stanchion
+    anon: 'true'
+    admin_key: foo
+    admin_secret: bar
+  - role: riakcs
+    anon: 'true'
+    admin_key: foo
+    admin_secret: bar
+
+# reset the creds
+- hosts: stanchion[0]
+  tasks:
+  - name: get credentials
+    riakcs: admin_id={{ riakcs.admin_user }} admin_email={{ riakcs.admin_email }}
+    register: creds
+
+
+# update the creds locally for safe keeping and subsequent runs
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+  - roles/stanchion/vars/resetcreds.yml
+  tasks:
+  - debug: msg="{{ admin_key }} {{ admin_secret }}"
+  - resetcreds: admin_key="{{ admin_key }}" admin_secret="{{ admin_secret }}"
+
+# changes the stanchion creds on all the stanchion servers
+- hosts: stanchion
+  serial: 1
+  sudo: True
+  vars_files:
+  - roles/stanchion/vars/resetcreds.yml
+  roles:
+  - stanchion
+
+# change creds on all the riakcs servers
+- hosts: riak_cluster
+  serial: 1
+  sudo: True
+  vars_files:
+  - roles/stanchion/vars/resetcreds.yml
+  roles:
+  - riakcs

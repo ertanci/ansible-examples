@@ -1,4 +1,0 @@
-creds: ${hostvars.${groups.stanchion[0]}.creds}
-anon: 'false'
-admin_key: ${creds.admin_key}
-admin_secret: ${creds.admin_secret}
