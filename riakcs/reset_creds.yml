@@ -16,7 +16,7 @@
 - hosts: stanchion[0]
   tasks:
   - name: get credentials
-    riakcs: admin_id={{ riakcs.admin_user }} admin_email={{ riakcs.admin_email }}
+    riakcs_creds: command=create admin_id={{ riakcs.admin_user }} admin_email={{ riakcs.admin_email }}
     register: creds
 
 
@@ -26,8 +26,7 @@
   vars_files:
   - roles/stanchion/vars/resetcreds.yml
   tasks:
-  - debug: msg="{{ admin_key }} {{ admin_secret }}"
-  - resetcreds: admin_key="{{ admin_key }}" admin_secret="{{ admin_secret }}"
+  - riakcs_creds: command=update admin_key={{ admin_key }} admin_secret={{ admin_secret }}
 
 # changes the stanchion creds on all the stanchion servers
 - hosts: stanchion
