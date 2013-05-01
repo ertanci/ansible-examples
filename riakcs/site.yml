@@ -1,5 +1,4 @@
 ---
 - include: setup_riakcs.yml
-- include: setup_stanchion.yml
 - include: setup_riak.yml
 - include: form_cluster.yml

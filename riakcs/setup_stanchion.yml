@@ -1,6 +1,0 @@
----
-- hosts: stanchion
-  sudo: True
-  roles:
-  - common
-  - stanchion

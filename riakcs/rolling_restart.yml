@@ -1,16 +1,6 @@
 ---
-- hosts: riak_cluster
-  sudo: True
+- hosts: riakcs_cluster
   serial: 1
-  vars:
-    admin_key: ${riakcs.admin_key}
-    admin_secret: ${riakcs.admin_secret}
-    anon: 'false'
-
-  vars_files:
-    - ../roles/common/vars/main.yml
-
-  tasks:
-  - include: ../roles/riakcs/tasks/main.yml
-  handlers:
-  - include: ../roles/riakcs/handlers/main.yml
+  sudo: True
+  roles:
+  - riakcs
