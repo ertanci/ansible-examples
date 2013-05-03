@@ -1,0 +1,4 @@
+- hosts: s3clients
+  connection: local
+  roles:
+  - role: s3client
