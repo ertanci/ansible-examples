@@ -12,7 +12,7 @@
     admin_key: foo
     admin_secret: bar
 
-# reset the creds on one server
+# reset the creds on onse serve
 - hosts: stanchion[0]
   vars_files:
   - roles/stanchion/vars/resetcreds.yml
@@ -41,3 +41,5 @@
   - roles/stanchion/vars/resetcreds.yml
   roles:
   - riakcs
+
+- include: config_client.yml

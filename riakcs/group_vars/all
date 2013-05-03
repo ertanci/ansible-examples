@@ -11,10 +11,10 @@ riak:
   ring_size: 64
   scheduler: noop
 riakcs:
-  admin_email: cob@admin.com
-  admin_key: RJMNZGBJD2TJ7U8UGNSV
-  admin_secret: U9k9VHcQHlJiT_hDWr26_IQHmX-P5CadO1VN0Q==
-  admin_user: cob
+  admin_email: eob@admin.com
+  admin_key: E9_B-L_ZHWKAZ3JZNN_K
+  admin_secret: 07UG8LJxNtHpR6fZhG9-JPKkP4Qoq-IRD7PCmA==
+  admin_user: eob
   iface: eth1
   version: 1.3.1
 s3client:

@@ -79,7 +79,7 @@ def main():
     arg_spec = dict(
         admin_id=dict( default="admin"),
         admin_email=dict( default="admin@admin.com"),
-        path=dict(default='group_vars/riakcs_cluster'),
+        path=dict(default='group_vars/all'),
         admin_key=dict(default='foo'),
         admin_secret=dict(default='bar'),
         conn=dict( default='127.0.0.1:8080'),
