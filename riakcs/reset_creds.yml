@@ -12,21 +12,17 @@
     admin_key: foo
     admin_secret: bar
 
-# reset the creds
+# reset the creds on one server
 - hosts: stanchion[0]
+  vars_files:
+  - roles/stanchion/vars/resetcreds.yml
   tasks:
   - name: get credentials
     riakcs_creds: command=create admin_id={{ riakcs.admin_user }} admin_email={{ riakcs.admin_email }}
     register: creds
+  - name: update the creds locally for safe keeping and subsequent runs
+    local_action: riakcs_creds command=update admin_key={{ admin_key }} admin_secret={{ admin_secret }}
 
-
-# update the creds locally for safe keeping and subsequent runs
-- hosts: 127.0.0.1
-  connection: local
-  vars_files:
-  - roles/stanchion/vars/resetcreds.yml
-  tasks:
-  - riakcs_creds: command=update admin_key={{ admin_key }} admin_secret={{ admin_secret }}
 
 # changes the stanchion creds on all the stanchion servers
 - hosts: stanchion

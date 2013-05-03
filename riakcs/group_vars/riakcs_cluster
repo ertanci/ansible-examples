@@ -5,17 +5,21 @@ riak:
   iface: eth1
   log_rotate: 5
   mountpoint: /
-  partition: /dev/mapper/VolGroup-lv_root
+  partition: /dev/mapper/ubuntu--server--1204--x64-root
   pb_port: 8087
   physical_disk: sda
   ring_size: 64
   scheduler: noop
 riakcs:
-  admin_email: bob@admin.com
-  admin_key: 5XDFYIQA77PMZU3DYYLS
-  admin_secret: uWGJZovGXWJsP4YpIAESnyak1E70oz08mW0czw==
-  admin_user: bob
+  admin_email: cob@admin.com
+  admin_key: RJMNZGBJD2TJ7U8UGNSV
+  admin_secret: U9k9VHcQHlJiT_hDWr26_IQHmX-P5CadO1VN0Q==
+  admin_user: cob
   iface: eth1
   version: 1.3.1
+s3client:
+  host_base: s3.amazonaws.com
+  proxy_host: 127.0.0.1
+  proxy_port: 8080
 stanchion:
   iface: eth1
