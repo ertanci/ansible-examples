@@ -1,7 +1,7 @@
 ---
-riak_ip: ${ansible_${riak.iface}.ipv4.address}
-riakcs_ip: ${ansible_${riakcs.iface}.ipv4.address}
-stanchion_ip: ${ansible_${stanchion.iface}.ipv4.address}
-admin_key: ${riakcs.admin_key}
-admin_secret: ${riakcs.admin_secret}
+riak_ip: "{{ hostvars[inventory_hostname]['ansible_' ~ riak.iface]['ipv4']['address'] }}"
+riakcs_ip: "{{ hostvars[inventory_hostname]['ansible_' ~ riakcs.iface]['ipv4']['address'] }}"
+stanchion_ip: "{{ hostvars[inventory_hostname]['ansible_' ~ stanchion.iface]['ipv4']['address'] }}"
+admin_key: "{{ riakcs.admin_key }}"
+admin_secret:  "{{ riakcs.admin_secret }}"
 anon: 'false'

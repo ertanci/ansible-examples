@@ -1,0 +1,12 @@
+---
+
+- debug: msg="installing haproxy package"
+- yum: name=haproxy state=installed
+  when: ansible_pkg_mgr == 'yum'
+
+- apt: pkg=haproxy update_cache=yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Configure the haproxy cnf file with hosts
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  notify: restart haproxy

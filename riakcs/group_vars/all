@@ -11,15 +11,15 @@ riak:
   ring_size: 64
   scheduler: noop
 riakcs:
-  admin_email: eob@admin.com
-  admin_key: E9_B-L_ZHWKAZ3JZNN_K
-  admin_secret: 07UG8LJxNtHpR6fZhG9-JPKkP4Qoq-IRD7PCmA==
-  admin_user: eob
+  admin_email: gob@admin.com
+  admin_key: 0GBOVJIUFY4ZNZCFRYYG
+  admin_secret: v81QbViJNr8TLlgXBFQ-VKi5bCCZ5AfsYmikLg==
+  admin_user: gob
   iface: eth1
   version: 1.3.1
 s3client:
   host_base: s3.amazonaws.com
-  proxy_host: 127.0.0.1
+  proxy_host: 10.42.0.100
   proxy_port: 8080
 stanchion:
   iface: eth1

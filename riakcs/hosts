@@ -1,5 +1,9 @@
+[haproxy]
+10.42.0.100
+
 [localhost]
-127.0.0.1 ansible_python_interpreter=/Users/jmartin/.virtualenvs/ansible-git/bin/python
+#127.0.0.1 ansible_python_interpreter=/Users/jmartin/.virtualenvs/ansible-git/bin/python
+127.0.0.1
 
 [riak_cluster]
 10.42.0.6 node_type=primary
