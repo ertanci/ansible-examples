@@ -1,6 +1,12 @@
 ---
-- hosts: riakcs_cluster
+- hosts: riak_cluster
   serial: 1
   sudo: True
+  pre_tasks:
+  - name: make sure there are no transfers happening
+    riak: wait_for_handoffs=true
+    async: 600
+    poll: 10
   roles:
-  - riakcs
+  - role: riak
+  - role: riakcs

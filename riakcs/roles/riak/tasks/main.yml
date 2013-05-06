@@ -17,9 +17,6 @@
 
 - name: start riak
   service: name=riak state=started
-
-- name: wait for port to become active
-  wait_for: port={{ riak.http_port }}
-
-- name: wait for riak_kv service to start
-  riak: wait_for_service=kv
+  notify:
+  - wait for http
+  - wait for kv
