@@ -12,13 +12,6 @@
   copy: src=etc_sysctl.d_riak.conf dest=/etc/sysctl.d/riak.conf owner=root group=root mode=0644
   notify: update sysctl
 
-#rhel clone specific
-
-#- name: configure iptables
-#  template: src=iptables.j2 dest=/etc/sysconfig/iptables owner=root group=root
-#  notify:
-#  - restart iptables
-
 - name: fetch yum repository
   get_url: url=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm dest=/tmp
 
