@@ -1,6 +1,9 @@
 ---
 - name: restart riak
   service: name=riak state=restarted
+  notify:
+  - wait for http
+  - wait for kv
 
 - name: wait for http
   wait_for: port={{ riak.http_port }}

@@ -24,11 +24,11 @@ defaults
         timeout check           10s
 
 frontend riak_cs
-        bind          0.0.0.0:8080 transparent
+        bind          0.0.0.0:8080
         mode          http
         option        httplog
         capture       request header Host len 64
-        default_backend   riak_cs_backend if good_ips
+        default_backend   riak_cs_backend
 
 backend riak_cs_backend
         mode          http

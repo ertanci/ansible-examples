@@ -10,9 +10,9 @@
   notify:
   - restart iptables
 
-- name: install riak, riak-cs, stanchion
+#install packages outside of roles because they are cross dependent
+- name: install riak, riakcs
   yum: name=$item state=present
   with_items:
   - riak
   - riak-cs
-  - stanchion

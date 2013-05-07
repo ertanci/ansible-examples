@@ -2,15 +2,6 @@
 - name: Create groups based on distribution
   group_by: key={{ ansible_distribution }}
 
-- name: update pam configuration
-  copy: src=etc_security_limits.d_riak.conf dest=/etc/security/limits.d/riak.conf owner=root group=root mode=0644
-
-- name: configure ulimit for riak-cs user
-  copy: src=etc_security_limits.d_riakcs.conf dest=/etc/security/limits.d/riakcs.conf
-
-- name: configure ulimit for stanchion user
-  copy: src=etc_security_limits.d_stanchion.conf dest=/etc/security/limits.d/stanchion.conf
-
 - name: mount the riak volume with optmized settings
   mount: name={{ riak.mountpoint }} src={{ riak.partition }} opts="noatime,barrier=0,errors=remount-ro" fstype=ext4 state=mounted
 
