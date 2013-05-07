@@ -1,0 +1,15 @@
+---
+- name: yum installing haproxy
+  yum: name=haproxy state=installed
+
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables owner=root group=root
+  notify:
+  - restart iptables
+
+- name: enable haproxy service
+  service: name=haproxy enabled=yes state=started
+
+- name: Configure the haproxy
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  notify: restart haproxy
