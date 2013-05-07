@@ -1,3 +1,6 @@
 ---
 - name: restart stanchion
   service: name=stanchion state=restarted
+
+- name: lokkit
+  command: lokkit --custom-rules /etc/sysconfig/iptables.stanchion --update

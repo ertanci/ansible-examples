@@ -1,20 +1,18 @@
 ---
-- name: configure iptables
-  template: src=iptables.j2 dest=/etc/ufw/applications.d/haproxy owner=root group=root mode=0644
-  notify:
-  - ufw
 
 - name: apt installing haproxy
   apt: pkg=haproxy update_cache=yes
+
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/iptables.rules owner=root group=root
+  notify:
+  - restore iptables
 
 - name: enable haproxy service (deb)
   copy: src=etc_default_haproxy dest=/etc/default/haproxy
 
 - name: enable haproxy service
-  service: name=haproxy enabled=yes
-
-- name: enable haproxy service
-  service: name=haproxy state=started
+  service: name=haproxy enabled=yes state=started
 
 - name: Configure the haproxy
   template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg

@@ -1,11 +1,9 @@
 ---
-- name: configure iptables
-  template: src=iptables.j2 dest=/etc/sysconfig/iptables.stanchion owner=root group=root
-  notify:
-  - lokkit
-
 - name: install stanchion
-  yum: name=stanchion state=present
+  apt: pkg=stanchion update_cache=yes
+
+- name: set the stanchion ulimit
+  copy: src=etc_default_stanchion_ulimit dest=/etc/default/stanchion
 
 - name: configure ulimit for stanchion user
   copy: src=etc_security_limits.d_stanchion.conf dest=/etc/security/limits.d/stanchion.conf

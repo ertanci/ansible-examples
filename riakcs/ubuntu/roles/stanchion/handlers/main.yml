@@ -1,3 +1,6 @@
 ---
 - name: restart stanchion
   service: name=stanchion state=restarted
+
+- name: ufw
+  shell: ufw allow stanchion && ufw app update stanchion

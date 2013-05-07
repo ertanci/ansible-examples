@@ -7,5 +7,5 @@
 - name: reload haproxy
   service: name=haproxy state=reloaded
 
-- name: lokkit
-  command: lokkit --custom-rules /etc/sysconfig/iptables.haproxy --update
+- name: restore iptables
+  shell: iptables-restore < /etc/iptables.rules

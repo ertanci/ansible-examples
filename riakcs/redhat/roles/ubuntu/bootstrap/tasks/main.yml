@@ -1,4 +1,7 @@
 ---
+- name: Create groups based on distribution
+  group_by: key={{ ansible_distribution }}
+
 - name: mount the riak volume with optmized settings
   mount: name={{ riak.mountpoint }} src={{ riak.partition }} opts="noatime,barrier=0,errors=remount-ro" fstype=ext4 state=mounted
 
@@ -18,16 +21,10 @@
     - /etc/pam.d/common-session
     - /etc/pam.d/common-session-noninteractive
 
-- name: allow ssh traffic
-  command: ufw allow OpenSSH
-
-- name: enable firewall
-  command: ufw --force enable
-
-#- name: configure iptables
-#  template: src=iptables.j2 dest=/etc/iptables.rules owner=root group=root
-#  notify:
-#  - restore iptables
+- name: configure iptables
+  template: src=../../common/templates/iptables.j2 dest=/etc/iptables.rules owner=root group=root
+  notify:
+  - restore iptables
 
 - name: get the basho apt key
   apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present

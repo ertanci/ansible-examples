@@ -1,0 +1,13 @@
+---
+- hosts: riakcs_cluster
+  sudo: True
+  roles:
+  - bootstrap
+  - riak
+  - riakcs
+
+- hosts: stanchion
+  gather_facts: no
+  sudo: True
+  roles:
+  - stanchion

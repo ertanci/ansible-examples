@@ -1,0 +1,8 @@
+---
+- hosts: riakcs_cluster
+  gather_facts: yes
+
+- hosts: haproxy
+  sudo: True
+  roles:
+  - haproxy

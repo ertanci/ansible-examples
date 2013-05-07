@@ -4,6 +4,3 @@
 
 - name: source rclocal
   command: /bin/bash /etc/rc.local
-
-- name: restore iptables
-  shell: iptables-restore < /etc/iptables.rules

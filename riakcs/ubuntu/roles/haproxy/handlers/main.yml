@@ -7,5 +7,5 @@
 - name: reload haproxy
   service: name=haproxy state=reloaded
 
-- name: restore iptables
-  shell: iptables-restore < /etc/iptables.rules
+- name: ufw
+  shell: ufw allow haproxy && ufw app update haproxy

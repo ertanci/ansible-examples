@@ -5,6 +5,11 @@
 - name: set the riak ulimit
   copy: src=etc_default_riak_ulimit dest=/etc/default/riak
 
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/ufw/applications.d/riak owner=root group=root mode=0644
+  notify:
+  - ufw
+
 - name: update pam configuration
   copy: src=etc_security_limits.d_riak.conf dest=/etc/security/limits.d/riak.conf owner=root group=root mode=0644
 
@@ -19,6 +24,9 @@
   tags: configfiles
   notify:
   - restart riak
+
+- name: enable riak
+  service: name=riak enabled=yes
 
 - name: start riak
   service: name=riak state=started enabled=yes

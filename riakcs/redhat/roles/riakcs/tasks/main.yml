@@ -2,6 +2,11 @@
 - name: configure ulimit for riak-cs user
   copy: src=etc_security_limits.d_riakcs.conf dest=/etc/security/limits.d/riakcs.conf
 
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables.riakcs owner=root group=root
+  notify:
+  - lokkit
+
 - name: install riakcs
   yum: name=riak-cs state=present
 

@@ -3,9 +3,9 @@
   yum: name=haproxy state=installed
 
 - name: configure iptables
-  template: src=iptables.j2 dest=/etc/sysconfig/iptables owner=root group=root
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables.haproxy owner=root group=root
   notify:
-  - restart iptables
+  - lokkit
 
 - name: enable haproxy service
   service: name=haproxy enabled=yes state=started

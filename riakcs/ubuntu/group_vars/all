@@ -12,8 +12,8 @@ riak:
   scheduler: noop
 riakcs:
   admin_email: gob@admin.com
-  admin_key: KCXIVXQ88GP4VWVYEIDM
-  admin_secret: 6Pt5tLhtxAhg0X48t4st3hTIByWKgWnatj_tfA==
+  admin_key: UGMEBJ31PXOO7XZQYRJI
+  admin_secret: WXiDSjXEK1lg8vjPGeGhrwYI2V8mb3jVhSFBVw==
   admin_user: gob
   iface: eth1
   version: 1.3.1

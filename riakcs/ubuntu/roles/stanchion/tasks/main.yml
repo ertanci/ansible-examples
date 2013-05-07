@@ -1,4 +1,9 @@
 ---
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/ufw/applications.d/stanchion owner=root group=root mode=0644
+  notify:
+  - ufw
+
 - name: install stanchion
   apt: pkg=stanchion update_cache=yes
 
@@ -18,5 +23,8 @@
   tags: configfiles
   notify: restart stanchion
 
+- name: enable stanchion
+  service: name=stanchion enabled=yes
+
 - name: start stanchion
-  service: name=stanchion state=started enabled=yes
+  service: name=stanchion state=started

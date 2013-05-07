@@ -1,13 +1,9 @@
 ---
-
-
 - name: install riak
-  yum: name=riak state=present
+  apt: pkg=riak update_cache=yes
 
-- name: configure iptables
-  template: src=iptables.j2 dest=/etc/sysconfig/iptables.riak owner=root group=root
-  notify:
-  - lokkit
+- name: set the riak ulimit
+  copy: src=etc_default_riak_ulimit dest=/etc/default/riak
 
 - name: update pam configuration
   copy: src=etc_security_limits.d_riak.conf dest=/etc/security/limits.d/riak.conf owner=root group=root mode=0644
