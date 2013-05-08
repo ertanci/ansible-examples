@@ -1,0 +1,2 @@
+- name: lokkit
+  command: lokkit --custom-rules /etc/sysconfig/iptables.graphite --update

@@ -1,0 +1,11 @@
+---
+- hosts: riakcs_cluster
+  sudo: True
+  roles:
+  - collectd_agent
+
+- hosts: haproxy
+  sudo: True
+  roles:
+  - collectd_server
+  - graphite

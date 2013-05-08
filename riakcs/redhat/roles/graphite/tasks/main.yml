@@ -1,0 +1,29 @@
+- name: fetch yum repository
+  get_url: url=http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm dest=/tmp
+
+- name: configure the epel repository
+  yum: name=/tmp/epel-release-6-8.noarch.rpm
+
+- name: install graphite-web
+  yum: name=graphite-web state=present enablerepo=epel-testing
+
+- name: install carbon, httpd
+  yum: name=$item state=present
+  with_items:
+  - httpd
+  - python-carbon
+
+#- name: prep graphite db
+#  shell: cd /usr/lib/python2.6/site-packages/graphite && ./manage.py syncdb --noinput && touch /root/.graphite_initialized creates=/root/.graphite_initialized
+
+- name: enable httpd, carbon
+  service: name=$item enabled=yes state=started
+  with_items:
+  - httpd
+  - carbon-cache
+  - carbon-aggregator
+
+- name: configure iptables
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables.graphite owner=root group=root
+  notify:
+  - lokkit

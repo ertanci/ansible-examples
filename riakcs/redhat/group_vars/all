@@ -23,3 +23,5 @@ s3client:
   proxy_port: 8080
 stanchion:
   iface: eth1
+collectd:
+  server: 10.42.0.100
