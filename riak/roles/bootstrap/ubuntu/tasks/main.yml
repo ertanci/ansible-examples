@@ -1,7 +1,4 @@
 ---
-- name: set the riak ulimit
-  copy: src=etc_default_riak_ulimit dest=/etc/default/riak
-
 - name: update pam configuration
   lineinfile: line="session    required   pam_limits.so" dest={{ item }} regexp="session    required   pam_limits.so" insertafter="^# end of pam-auth-update config"
   with_items:
@@ -14,10 +11,5 @@
 - name: configure the basho repository
   template: src=etc_apt_sources.list.d_basho.list.j2 dest=/etc/apt/sources.list.d/basho.list
 
-- name: install riak
-  apt: pkg=riak update_cache=yes
-
-- name: configure iptables
-  template: src=../../common/templates/iptables.j2 dest=/etc/iptables.rules owner=root group=root
-  notify:
-  - restore iptables
+- name: update cache
+  apt: update_cache=yes

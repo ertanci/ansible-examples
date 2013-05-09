@@ -1,6 +1,0 @@
----
-- name: restart riakcs
-  service: name=riak-cs state=restarted
-
-- name: ufw
-  shell: ufw allow riakcs && ufw app update riakcs

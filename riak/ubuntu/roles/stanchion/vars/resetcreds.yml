@@ -1,4 +1,0 @@
----
-anon: 'false'
-admin_key: "{{ hostvars[groups['stanchion'][0]]['creds']['admin_key'] }}"
-admin_secret: "{{ hostvars[groups['stanchion'][0]]['creds']['admin_secret'] }}"

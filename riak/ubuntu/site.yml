@@ -1,5 +1,0 @@
----
-- include: setup_riakcs.yml
-- include: form_cluster.yml
-- include: config_client.yml
-- include: setup_haproxy.yml

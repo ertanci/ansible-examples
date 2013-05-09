@@ -1,3 +1,0 @@
----
-- name: configure /tmp/s3cfg-ansible
-  template: src=s3cfg.j2 dest=/tmp/s3cfg-ansible
